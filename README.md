@@ -25,7 +25,7 @@ You can run the script using `node` or `pm2` commands. I personally like to use 
 #### Required parameters:
 * `dxSalePresaleContractAddress` - this is the DxSale presale contract address **( not the contract address of the token you're willing to buy )**. String, 42 bytes size starting with `0x`.
 * `buyingBnbAmount` - this is the amount of BNB which you are willing to use to execute the buying transaction. Integer or float.
-* `senderPrivateKey` - this is the private key of the wallet address which will be used to execute the buying transaction. For multi-address transactions then list the private keys separated by `,`, example - `senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f,0x3da3ef21b123d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b42de8E`. Each private key have to have 66 bytes size starting with `0x`.
+* `senderPrivateKey` - this is the private key of the wallet address which will be used to execute the buying transaction. For multi-address transactions then list the private keys separated by `,`. *( Example - `senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f,0x3da3ef21b123d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b42de8E`. )* Each private key have to have 66 bytes size starting with `0x`.
 
 #### Optional parameters:
 * `gasLimit` - the maximum amount of gas you are willing to consume on a transaction, default value is 500000.
