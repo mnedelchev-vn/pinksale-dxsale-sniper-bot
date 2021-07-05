@@ -1,4 +1,4 @@
-![alt text](https://github.com/mnedelchev-vn/dxsale-sniper-bot/blob/main/dxsale-logo.png)
+![alt text](https://github.com/mnedelchev-vn/dxsale-sniper-bot/blob/master/dxsale-logo.png)
 
 # DxSale sniper bot
 
