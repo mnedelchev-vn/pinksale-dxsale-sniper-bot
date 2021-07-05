@@ -1,0 +1,16 @@
+{
+  "name": "dxsale-sniper-bot",
+  "version": "1.0.0",
+  "description": "A free NodeJS sniper bot built to work with DxSale. DxLaunch is an open, decentralized platform for token sales.",
+  "main": "dxsale-sniper-bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Miroslav Nedelchev <miroslavn94@gmail.com> (https://mnedelchev.me)",
+  "license": "ISC",
+  "dependencies": {
+    "cronr": "^2.2.1",
+    "web3": "1.0.0-beta.36"
+  }
+}
