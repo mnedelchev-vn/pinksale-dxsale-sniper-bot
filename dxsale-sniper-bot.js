@@ -18,11 +18,6 @@ var botInitialDelay = 10000;
 var logsDir = __dirname + '/logs/';
 var logsPath = logsDir + 'dxsale-sniper-bot-' + new Date().toISOString().slice(0,10) + '.txt';
 
-// if logs dir missing then create it
-if (createLogs && !fs.existsSync(logsDir)) {
-    fs.mkdirSync(logsDir);
-}
-
 const projectData = {
     utils: {
         createLog: function(content) {
@@ -101,6 +96,11 @@ async function initBotLogic() {
     botInitialDelay = (projectData.utils.propertyExists(args, 'botInitialDelay') && args.botInitialDelay != '' && args.botInitialDelay != null && args.botInitialDelay != undefined) ? args.botInitialDelay : botInitialDelay;
     console.log('Bot initial delay: ' + botInitialDelay);
     // ======================== /CHANGING DEFAULT PARAMETERS IF THEY ARE PASSED ========================
+
+    // if logs dir missing then create it
+    if (createLogs && !fs.existsSync(logsDir)) {
+        fs.mkdirSync(logsDir);
+    }
 
     if (botInitialDelay > 0) {
         console.log('Starting the DxSale Sniper bot in ' + (botInitialDelay / 1000) + ' seconds... ¯\\_(*o*)_/¯');
