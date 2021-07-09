@@ -5,7 +5,7 @@ const Web3 = require('web3');
 
 console.log('Welcome to DxSale Sniper bot!');
 
-var web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed1.binance.org:443'));
+var web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
 var chainId = 56;
 // ======================== DEFAULT CONFIG ========================
 var gasLimit = 500000; // in gwei
