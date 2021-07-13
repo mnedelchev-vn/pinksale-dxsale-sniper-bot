@@ -151,9 +151,9 @@ async function initBotLogic() {
                                         } else {
                                             executeBuy = true;
                                             if (sendSignedTransactionErr.message) {
-                                                projectData.utils.createLog('Method web3.eth.sendSignedTransaction failed. Message: ' + sendSignedTransactionErr.message);
+                                                projectData.utils.createLog('Method web3.eth.sendSignedTransaction failed, most likely signed with low gas limit.. Message: ' + sendSignedTransactionErr.message);
                                             } else {
-                                                projectData.utils.createLog('Method web3.eth.sendSignedTransaction failed. Message: ' + sendSignedTransactionErr.toString());
+                                                projectData.utils.createLog('Method web3.eth.sendSignedTransaction failed, most likely signed with low gas limit.. Message: ' + sendSignedTransactionErr.toString());
                                             }
 
                                             if (counter != privateKeys.length - 1) {
@@ -165,9 +165,9 @@ async function initBotLogic() {
                                 } else {
                                     executeBuy = true;
                                     if (signTransactionErr.message) {
-                                        projectData.utils.createLog('Method web3.eth.accounts.signTransaction failed. Message: ' + signTransactionErr.message);
+                                        projectData.utils.createLog('Method web3.eth.accounts.signTransaction failed, most likely signed with low gas limit. Message: ' + signTransactionErr.message);
                                     } else {
-                                        projectData.utils.createLog('Method web3.eth.accounts.signTransaction failed. Message: ' + signTransactionErr.toString());
+                                        projectData.utils.createLog('Method web3.eth.accounts.signTransaction failed, most likely signed with low gas limit. Message: ' + signTransactionErr.toString());
                                     }
 
                                     if (counter != privateKeys.length - 1) {
@@ -179,9 +179,9 @@ async function initBotLogic() {
                         } else {
                             executeBuy = true;
                             if (gasEstimateError.message) {
-                                projectData.utils.createLog('Method web3.eth.estimateGas() failed. Message: ' + gasEstimateError.message);
+                                projectData.utils.createLog('Presale contract is not active yet, method web3.eth.estimateGas() failed. Error message: ' + gasEstimateError.message);
                             } else {
-                                projectData.utils.createLog('Method web3.eth.estimateGas() failed. Message: ' + gasEstimateError.toString());
+                                projectData.utils.createLog('Presale contract is not active yet, method web3.eth.estimateGas() failed. Error message: ' + gasEstimateError.toString());
                             }
 
                             if (counter != privateKeys.length - 1) {
