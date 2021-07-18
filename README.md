@@ -25,6 +25,7 @@ You can run the script using `node` or `pm2` commands. I personally like to use 
 #### Required parameters:
 * `dxSalePresaleContractAddress` - this is the DxSale presale contract address **( not the contract address of the token you're willing to buy )**. String, 42 bytes size starting with `0x`. Example:
 ![alt text](https://github.com/mnedelchev-vn/dxsale-sniper-bot/blob/master/assets/images/sample-dxsale-presale-address.png)
+<strong style="color: red;font-weight:bold;">WARNING!</strong> - This is a sample Presale address, do not use it! Each token DxSale has unique Presale contract address.
 
 * `buyingBnbAmount` - this is the amount of BNB which you are willing to use to execute the buying transaction. Integer or float.
 * `senderPrivateKey` - this is the private key of the wallet address which will be used to execute the buying transaction. For multi-address transactions then list the private keys separated by `,`. *( Example - `senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f,0x3da3ef21b123d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b42de8E`. )* Each private key have to have 66 bytes size starting with `0x`. *If you're using MetaMask then you will have to manually add `0x` at the beginning of your private key, because MetaMask is displaying the private key with 64 bytes size.*
