@@ -3,20 +3,7 @@ const fs = require('fs');
 const Cronr = require('cronr');
 const Web3 = require('web3');
 
-console.log('Welcome to DxSale Sniper bot!');
-
-var web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
-var chainId = 56;
-// ======================== DEFAULT CONFIG ========================
-var gasLimit = 500000; // in gwei
-var gasPrice = 10; // in gwei
-var createLogs = false;
-var cronTime = '*/100 * * * * * *'; // every 10 milliseconds
-var botInitialDelay = 10000;
-// ======================== /DEFAULT CONFIG ========================
-
-var logsDir = __dirname + '/logs/';
-var logsPath = logsDir + 'dxsale-sniper-bot-' + new Date().toISOString().slice(0,10) + '.txt';
+console.log('Welcome to Sniper bot!');
 
 const projectData = {
     utils: {
@@ -45,10 +32,24 @@ for (var i = 0, len = params.length; i < len; i+=1) {
     args[key_value[0]] = key_value[1];
 }
 
+// ======================== DEFAULT CONFIG ========================
+var node = (projectData.utils.propertyExists(args, 'node') && args.node != '' && args.node != null && args.node != undefined) ? args.node : 'https://bsc-dataseed.binance.org/';
+var gasLimit = 500000; // in gwei
+var gasPrice = 10; // in gwei
+var createLogs = false;
+var cronTime = '*/100 * * * * * *'; // every 10 milliseconds
+var botInitialDelay = 10000;
+// ======================== /DEFAULT CONFIG ========================
+
+var web3 = new Web3(new Web3.providers.HttpProvider(node));
+var chainId = 56;
+var logsDir = __dirname + '/logs/';
+var logsPath = logsDir + 'sniper-bot-' + new Date().toISOString().slice(0,10) + '.txt';
+
 async function initBotLogic() {
     // ======================== REQUIRED PARAMETERS ========================
-    if (!projectData.utils.propertyExists(args, 'dxSalePresaleContractAddress') || args.dxSalePresaleContractAddress == '' || args.dxSalePresaleContractAddress == null || args.dxSalePresaleContractAddress == undefined || args.dxSalePresaleContractAddress.length != 42 || await web3.eth.getCode(args.dxSalePresaleContractAddress) == '0x') {
-        return console.error('Missing or wrong dxSalePresaleContractAddress parameter. dxSalePresaleContractAddress must be contract address.');
+    if (!projectData.utils.propertyExists(args, 'presaleContractAddress') || args.presaleContractAddress == '' || args.presaleContractAddress == null || args.presaleContractAddress == undefined || args.presaleContractAddress.length != 42 || await web3.eth.getCode(args.presaleContractAddress) == '0x') {
+        return console.error('Missing or wrong presaleContractAddress parameter. presaleContractAddress must be contract address.');
     } else if (!projectData.utils.propertyExists(args, 'buyingBnbAmount') || args.buyingBnbAmount == '' || args.buyingBnbAmount == null || args.buyingBnbAmount == undefined) {
         return console.error('Missing or wrong buyingBnbAmount parameter.');
     } else if (!projectData.utils.propertyExists(args, 'senderPrivateKey') || args.senderPrivateKey == '' || args.senderPrivateKey == null || args.senderPrivateKey == undefined) {
@@ -56,7 +57,7 @@ async function initBotLogic() {
     }
 
     var buyingBnbAmount = args.buyingBnbAmount;
-    var dxSalePresaleContractAddress = args.dxSalePresaleContractAddress;
+    var presaleContractAddress = args.presaleContractAddress;
 
     // validate the private key or keys
     var senderPrivateKey = args.senderPrivateKey;
@@ -87,6 +88,7 @@ async function initBotLogic() {
     console.log('Addresses used to send the transactions: ' + addressesUsedToSendTransactions);
     gasLimit = (projectData.utils.propertyExists(args, 'gasLimit') && args.gasLimit != '' && args.gasLimit != null && args.gasLimit != undefined) ? args.gasLimit : gasLimit;
     console.log('Gas limit: ' + gasLimit);
+    console.log('Node: ' + node);
     gasPrice = (projectData.utils.propertyExists(args, 'gasPrice') && args.gasPrice != '' && args.gasPrice != null && args.gasPrice != undefined) ? args.gasPrice * 1000000000 : gasPrice * 1000000000;
     console.log('Gas price: ' + (gasPrice / 1000000000) + ' Gwei');
     createLogs = (projectData.utils.propertyExists(args, 'createLogs') && args.createLogs === 'true') ? true : createLogs;
@@ -103,9 +105,9 @@ async function initBotLogic() {
     }
 
     if (botInitialDelay > 0) {
-        console.log('Starting the DxSale Sniper bot in ' + (botInitialDelay / 1000) + ' seconds... ¯\\_(*o*)_/¯');
+        console.log('Starting the Sniper bot in ' + (botInitialDelay / 1000) + ' seconds... ¯\\_(*o*)_/¯');
     } else {
-        console.log('Starting the DxSale Sniper bot now... ¯\\_(*o*)_/¯');
+        console.log('Starting the Sniper bot now... ¯\\_(*o*)_/¯');
     }
 
     setTimeout(function () {
@@ -121,7 +123,7 @@ async function initBotLogic() {
                 function recursiveTransactionsLoop(counter) {
                     var senderAddress = web3.eth.accounts.privateKeyToAccount(privateKeys[counter]).address;
 
-                    web3.eth.estimateGas({to: dxSalePresaleContractAddress, from: senderAddress, value: web3.utils.toHex(web3.utils.toWei(buyingBnbAmount, 'ether'))}, function(gasEstimateError, gasAmount) {
+                    web3.eth.estimateGas({to: presaleContractAddress, from: senderAddress, value: web3.utils.toHex(web3.utils.toWei(buyingBnbAmount, 'ether'))}, function(gasEstimateError, gasAmount) {
                         if (!gasEstimateError) {
                             projectData.utils.createLog('Transaction estimation successful: ' + gasAmount);
 
@@ -130,7 +132,7 @@ async function initBotLogic() {
                                 gasPrice: web3.utils.toHex(gasPrice),
                                 chainId: chainId,
                                 value: web3.utils.toHex(web3.utils.toWei(buyingBnbAmount, 'ether')),
-                                to: dxSalePresaleContractAddress
+                                to: presaleContractAddress
                             };
 
                             web3.eth.accounts.signTransaction(txParams, privateKeys[counter], function (signTransactionErr, signedTx) {
