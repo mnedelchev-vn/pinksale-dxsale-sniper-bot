@@ -43,7 +43,7 @@ Example **DxSale**:
 * `senderPrivateKey` - this is the private key of the wallet address which will be used to execute the buying transaction. For multi-address transactions then list the private keys separated by `,`. *( Example - `senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f,0x3da3ef21b123d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b42de8E`. )* Each private key have to have 66 bytes size starting with `0x`. *If you're using MetaMask then you will have to manually add `0x` at the beginning of your private key, because MetaMask is displaying the private key with 64 bytes size.*
 
 #### Optional parameters:
-* `node` - by default the bot will be using a standard BSC node. This node will be enough for signing transactions, but however if you want be fast as possible in presales you should find your self a fast node ( usually they're not free ). When you're able to provide a node better than the standard one you can pass as `node` parameter.
+* `node` - by default the bot will be using a standard BSC node. This node will be enough for signing transactions, but however if you want be fast as possible in presales you should find your self a fast node ( usually they're not free ). When you're able to provide a node better than the standard one you can pass it as `node` parameter. The node has to be full URI to the RPC endpoint, example: `https://localhost:8545`.
 * `gasLimit` - the maximum amount of gas you are willing to consume on a transaction, default value is 500000.
 * `gasPrice` - the transaction gas price in Gwei, default value is 10 Gwei.
 * `createLogs` - boolean, if set to `true` it will create ./logs folder and save logs on different bot actions.
