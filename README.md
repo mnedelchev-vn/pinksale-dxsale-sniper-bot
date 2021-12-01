@@ -29,11 +29,14 @@ Clone this repository ( or download from Code -> Download ZIP ) and run `npm ins
 You can run the script using `node` or `pm2` commands. I personally like to use the `pm2` command on my server, because PM2 is a process manager which takes care for my script to run 24/7. 
 
 #### Required parameters:
-* `presaleContractAddress` - this is the Pinksale or DxSale presale contract address **( not the contract address of the token you're willing to buy )**. String, 42 bytes size starting with `0x`. 
+* `presaleContractAddress` - this is the Pinksale or DxSale presale contract address **( not the contract address of the token you're willing to buy )**. String, 42 bytes size starting with `0x`.
+
 Example **Pinksale**:
 ![alt text](https://github.com/mnedelchev-vn/pinksale-dxsale-sniper-bot/blob/master/assets/images/sample-pinksale-presale-address.png)
+
 Example **DxSale**:
 ![alt text](https://github.com/mnedelchev-vn/pinksale-dxsale-sniper-bot/blob/master/assets/images/sample-dxsale-presale-address.png)
+
 **WARNING!** - This is a sample Presale address, do not use it! Each token Pinksale or DxSale presale has unique Presale contract address.
 
 * `buyingBnbAmount` - this is the amount of BNB which you are willing to use to execute the buying transaction. Integer or float.
