@@ -24,7 +24,7 @@ For the people who have expressed their support through a donation I offer perso
 * NodeJS 10.0.0 or above
 
 ## Installation
-Clone this repository ( or download from Code -> Download ZIP ) and run `npm install` inside the project folder. This command will download all the needed libraries which the bot needs to work properly.
+Clone this repository ( or download from Code -> Download ZIP ) and open your terminal inside the bot folder. Run `npm install` inside the bot folder. This command will download all the needed libraries which the bot needs to work properly. After the installation of the libraries is done then you're all set up to start sniping tokens!
 
 ## Usage
 You can run the script using `node` or `pm2` commands. I personally like to use the `pm2` command on my server, because PM2 is a process manager which takes care for my script to run 24/7. *( For the `pm2` option you need to own a virtual server. )*
@@ -41,7 +41,7 @@ Example **DxSale**:
 **WARNING!** - This is a sample Presale address, do not use it! Each token Pinksale or DxSale presale has unique Presale contract address.
 
 * `buyingBnbAmount` - this is the amount of BNB which you are willing to use to execute the buying transaction. Integer or float.
-* `senderPrivateKey` - this is the private key of the wallet address which will be used to execute the buying transaction. For multi-address transactions then list the private keys separated by `,`. *( Example - `senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f,0x3da3ef21b123d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b42de8E`. )* Each private key have to have 66 bytes size starting with `0x`. *If you're using MetaMask then you will have to manually add `0x` at the beginning of your private key, because MetaMask is displaying the private key with 64 bytes size.*
+* `senderPrivateKey` - this is the private key of the wallet address which will be used to execute the buying transaction. For multi-address transactions then list the private keys separated by `,`. *( Example - `senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f,0x3da3ef21b123d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b42de8E`. )* Each private key have to have 66 bytes size starting with `0x`.
 
 #### Optional parameters:
 * `node` - by default the bot will be using a standard BSC node. This node will be enough for signing transactions, but however if you want be fast as possible in presales you should find your self a fast node ( usually they're not free ). When you're able to provide a node better than the standard one you can pass it as `node` parameter. The node has to be full URI to the RPC endpoint, example: `https://localhost:8545`.

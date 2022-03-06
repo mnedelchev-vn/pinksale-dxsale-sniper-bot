@@ -34,8 +34,8 @@ for (var i = 0, len = params.length; i < len; i+=1) {
 
 // ======================== DEFAULT CONFIG ========================
 var node = (projectData.utils.propertyExists(args, 'node') && args.node != '' && args.node != null && args.node != undefined) ? args.node : 'https://bsc-dataseed.binance.org/';
-var gasLimit = 500000; // in gwei
-var gasPrice = 10; // in gwei
+var gasLimit = 500000;
+var gasPrice = 10; // in Gwei
 var createLogs = false;
 var cronTime = '*/100 * * * * * *'; // every 10 milliseconds
 var botInitialDelay = 10000;
@@ -62,6 +62,7 @@ async function initBotLogic() {
     // validate the private key or keys
     var senderPrivateKey = args.senderPrivateKey;
     var privateKeys = [];
+    // if multiple private keys have been passed to the bot
     if (senderPrivateKey.indexOf(',') > -1) {
         privateKeys = senderPrivateKey.split(',');
     } else {
@@ -72,7 +73,12 @@ async function initBotLogic() {
     var firstIteration = true;
     for (var i = 0, len = privateKeys.length; i < len; i+=1) {
         if (privateKeys[i].length != 66) {
-            return console.error('One or more of the private keys are invalid.');
+            // if private key is passed without the '0x' at the beginning
+            if (privateKeys[i].length == 64) {
+                privateKeys[i] = '0x' + privateKeys[i];
+            } else {
+                return console.error('One or more of the private keys are invalid.');
+            }
         }
 
         if (firstIteration) {
@@ -86,6 +92,8 @@ async function initBotLogic() {
 
     // ======================== CHANGING DEFAULT PARAMETERS IF THEY ARE PASSED ========================
     console.log('Addresses used to send the transactions: ' + addressesUsedToSendTransactions);
+    console.log('buyingBnbAmount: ' + buyingBnbAmount);
+    console.log('presaleContractAddress: ' + presaleContractAddress);
     gasLimit = (projectData.utils.propertyExists(args, 'gasLimit') && args.gasLimit != '' && args.gasLimit != null && args.gasLimit != undefined) ? args.gasLimit : gasLimit;
     console.log('Gas limit: ' + gasLimit);
     console.log('Node: ' + node);
@@ -113,7 +121,7 @@ async function initBotLogic() {
     setTimeout(function () {
         var executeBuy = true;
         const job = new Cronr(cronTime, function() {
-            projectData.utils.createLog('Cronjob iteration.');
+            projectData.utils.createLog('Cronjob iteration. The bot is checking if the presale is active.');
             if (executeBuy) {
                 executeBuy = false;
 
