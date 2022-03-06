@@ -9,7 +9,9 @@ This bot allows you to compete with other trading bots when buying a cryptocurre
 ## Grateful users & support
 This sniper bot is **fully free** and it was never meant to be paid. However if you appreciate my work I accept **BNB** or **ETH** donations at **0x5ADD71300d924213456b037b5be25020C62D9e08**. The real rockstars will follow my twitter as well:
 
-[![Twitter URL](https://github.com/mnedelchev-vn/pinksale-dxsale-sniper-bot/blob/master/assets/images/twitter.svg)](https://twitter.com/intent/follow?screen_name=mnedelchev_)
+[![Twitter URL](https://github.com/mnedelchev-vn/pancakeswap-sniper-bot/blob/main/assets/images/twitter.svg)](https://twitter.com/intent/follow?screen_name=mnedelchev_)
+
+For people who have expressed their support through a donation I offer personal assistance in setting up the bot. *( contact me in [Twitter](https://twitter.com/intent/follow?screen_name=mnedelchev_) )*
 
 ## Features
 * Including transaction options like gas price, gas limit, etc
@@ -20,13 +22,12 @@ This sniper bot is **fully free** and it was never meant to be paid. However if 
 ## Requirements
 * npm 6.0.0 or above
 * NodeJS 10.0.0 or above
-* pm2
 
 ## Installation
 Clone this repository ( or download from Code -> Download ZIP ) and run `npm install` inside the project folder. This command will download all the needed libraries which the bot needs to work properly.
 
 ## Usage
-You can run the script using `node` or `pm2` commands. I personally like to use the `pm2` command on my server, because PM2 is a process manager which takes care for my script to run 24/7. 
+You can run the script using `node` or `pm2` commands. I personally like to use the `pm2` command on my server, because PM2 is a process manager which takes care for my script to run 24/7. *( For the `pm2` option you need to own a virtual server. )*
 
 #### Required parameters:
 * `presaleContractAddress` - this is the Pinksale or DxSale presale contract address **( not the contract address of the token you're willing to buy )**. String, 42 bytes size starting with `0x`.
@@ -52,6 +53,4 @@ Example **DxSale**:
 
 #### Sample terminal command:
 * Using `node` - `node sniper-bot.js -- presaleContractAddress=0xab5801a7d398351b8be11c439e05c5b3259aec9b buyingBnbAmount=0.5 senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f createLogs=true gasPrice=25`
-* Using `pm2` - `pm2 start sniper-bot.js -- presaleContractAddress=0xab5801a7d398351b8be11c439e05c5b3259aec9b buyingBnbAmount=0.5 senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f createLogs=true gasPrice=25`
-
-If you wish to use the bot at same time for multiple crypto tokens you could make several pm2 instances by passing `--name` parameter to the pm2 command. Example: `--name "app name"`.
+* Using `pm2` - `pm2 start sniper-bot.js -- presaleContractAddress=0xab5801a7d398351b8be11c439e05c5b3259aec9b buyingBnbAmount=0.5 senderPrivateKey=0x8da4ef21b864d2cc526dbdb2a120bd2874c36c9d0a1fb7f8c63d7f7a8b41de8f createLogs=true gasPrice=25` *( This option is for people who are owners of virtual servers. By using pm2 you can start the bot on the virtual server and shut down your physical device. If you wish to use the bot at same time for multiple crypto tokens you could make several pm2 instances by passing `--name` parameter to the pm2 command. Example: `--name "app name"`. )*
