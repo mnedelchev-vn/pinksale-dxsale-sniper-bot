@@ -11,7 +11,7 @@ This sniper bot is **fully free** and it was never meant to be paid. However if 
 
 [![Twitter URL](https://github.com/mnedelchev-vn/pancakeswap-sniper-bot/blob/main/assets/images/twitter.svg)](https://twitter.com/intent/follow?screen_name=mnedelchev_)
 
-For people who have expressed their support through a donation I offer personal assistance in setting up the bot. *( contact me in [Twitter](https://twitter.com/intent/follow?screen_name=mnedelchev_) )*
+For the people who have expressed their support through a donation I offer personal assistance in setting up the bot. *( contact me in [Twitter](https://twitter.com/intent/follow?screen_name=mnedelchev_) )*
 
 ## Features
 * Including transaction options like gas price, gas limit, etc
